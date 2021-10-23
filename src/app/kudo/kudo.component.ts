@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-kudo',
@@ -6,6 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./kudo.component.css']
 })
 export class KudoComponent implements OnInit {
+
+  @Input() kudo:any;
 
   constructor() { }
 
