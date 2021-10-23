@@ -1,0 +1,20 @@
+<div class="row">
+    <nav>
+        <div class="nav-wrapper">
+            <a href="#" class="brand-logo">My Kudos App</a>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+                <li><a href="sass.html">Sass</a></li>
+                <li><a href="badges.html">Components</a></li>
+                <li><a href="collapsible.html">JavaScript</a></li>
+            </ul>
+        </div>
+    </nav>
+</div>
+<div>
+    <div class="col s12 flexbox">
+        <h2 class="header ">My kudos</h2>
+    </div>
+</div>
+<div class="row flexbox" *ngFor="let num of [1,2,3,4,5,6,7]">
+    <app-kudo></app-kudo>
+</div>
