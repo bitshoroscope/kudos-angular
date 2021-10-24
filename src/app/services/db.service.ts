@@ -1,21 +1,27 @@
 import { IKudo } from './../models/kudo.model';
 import { Subject, Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
+import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DBService {
 
-  constructor() { }
+  constructor(private firestore: AngularFirestore) { }
 
-  getKudos():Observable<IKudo[]> {
+/*   getKudos():Observable<IKudo[]> {
     let subject = new Subject<IKudo[]>();
     setTimeout(() => {
       subject.next(KUDOS.sort(this.sortByDate));
       subject.complete
     })
     return subject;
+  } */
+
+  getKudos() {
+    return this.firestore.collection('kudos').snapshotChanges();
   }
 
   sortByDate(a, b) {

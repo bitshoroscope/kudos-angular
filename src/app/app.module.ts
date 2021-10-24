@@ -1,4 +1,6 @@
 import { AuthService } from './services/auth.service';
+import { AngularFireModule } from '@angular/fire';
+import { environment } from '../environments/environment';
 import { KudoListResolver } from './services/kudo-list-resolver.service';
 import { DBService } from './services/db.service';
 import { BrowserModule } from '@angular/platform-browser';
@@ -23,6 +25,7 @@ import { FormsModule } from '@angular/forms';
     LoginComponent
   ],
   imports: [
+    AngularFireModule.initializeApp(environment.firebase),
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,

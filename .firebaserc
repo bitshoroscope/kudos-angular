@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "my-kudos-app": {
+      "hosting": {
+        "kudos-angular": [
+          "my-kudos-app"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "my-kudos-app"
+  }
+}
