@@ -9,3 +9,7 @@
     display: flex;
     margin-left: auto;
 }
+
+.actived {
+    background-color: rgba(0, 0, 0, 0.15);
+}

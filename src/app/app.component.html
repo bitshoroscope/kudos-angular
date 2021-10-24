@@ -3,9 +3,11 @@
         <div class="nav-wrapper">
             <a href="#" class="brand-logo">My Kudos App</a>
             <ul id="nav-mobile" class="right hide-on-med-and-down">
-                <li><a href="/give-kudos">Give kudos</a></li>
-                <li><a href="/my-kudos">My Kudos</a></li>
-                <li><a href="collapsible.html">Logout</a></li>
+                <li>
+                    <a routerLink="/give-kudos" routerLinkActive="actived">Give kudos</a>
+                </li>
+                <li><a routerLink="/my-kudos" routerLinkActive="actived">My Kudos</a></li>
+                <li><a [routerLink]="['collapsible.html']">Logout</a></li>
             </ul>
         </div>
     </nav>

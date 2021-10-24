@@ -1,6 +1,7 @@
 import { IKudo } from './../models/kudo.model';
 import { Component, OnInit } from '@angular/core';
 import { DBService } from '../services/db.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-kudo-list',
@@ -9,12 +10,14 @@ import { DBService } from '../services/db.service';
 })
 export class KudoListComponent implements OnInit {
 
-  kudosList = []
+  kudosList:any
 
-  constructor(private dbService:DBService) { }
+  constructor(private dbService:DBService, private route:ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.kudosList = this.dbService.getKudos()
+    this.dbService.getKudos().subscribe(kudos => {
+      this.kudosList = kudos
+    })
   }
 
 

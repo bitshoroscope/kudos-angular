@@ -1,3 +1,4 @@
+import { KudoListResolver } from './services/kudo-list-resolver.service';
 import { DBService } from './services/db.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -23,7 +24,8 @@ import { GiveKudosComponent } from './give-kudos/give-kudos.component';
     BrowserAnimationsModule,
   ],
   providers: [
-    DBService
+    DBService,
+    KudoListResolver
   ],
   bootstrap: [AppComponent]
 })
