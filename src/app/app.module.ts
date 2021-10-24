@@ -1,3 +1,4 @@
+import { DBService } from './services/db.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
@@ -19,7 +20,9 @@ import { KudoListComponent } from './kudo-list/kudo-list.component';
     AppRoutingModule,
     BrowserAnimationsModule,
   ],
-  providers: [],
+  providers: [
+    DBService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

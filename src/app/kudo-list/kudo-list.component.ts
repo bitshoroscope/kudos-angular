@@ -1,4 +1,6 @@
+import { IKudo } from './../models/kudo.model';
 import { Component, OnInit } from '@angular/core';
+import { DBService } from '../services/db.service';
 
 @Component({
   selector: 'app-kudo-list',
@@ -7,24 +9,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class KudoListComponent implements OnInit {
 
-  kudosList = [{
-    text: "Thank you so much for your effort",
-    user: 'Andy',
-    date: '2021-10-02',
-  }, {
-    text: "Glad to have you with us. It's amazing!!",
-    user: 'Bart',
-    date: '2021-11-02',
-  }, {
-    text: "Amazing job! It was marvelous!",
-    user: 'Lisa',
-    date: '2021-09-02',
-  }
-  ]
+  kudosList = []
 
-  constructor() { }
+  constructor(private dbService:DBService) { }
 
   ngOnInit(): void {
+    this.kudosList = this.dbService.getKudos()
   }
+
+
 
 }

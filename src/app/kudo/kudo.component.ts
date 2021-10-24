@@ -1,3 +1,4 @@
+import { IKudo } from './../models/kudo.model';
 import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
@@ -7,7 +8,7 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class KudoComponent implements OnInit {
 
-  @Input() kudo:any;
+  @Input() kudo:IKudo;
 
   constructor() { }
 
