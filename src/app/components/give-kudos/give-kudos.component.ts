@@ -7,9 +7,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class GiveKudosComponent implements OnInit {
 
+  userTo:string
+  message:string
+  date:Date = new Date()
+
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  giveKudo(formValues){
+    console.log(formValues)
   }
 
 }
