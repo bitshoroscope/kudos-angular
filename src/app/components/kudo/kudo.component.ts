@@ -1,4 +1,4 @@
-import { IKudo } from './../models/kudo.model';
+import { IKudo } from '../../models/kudo.model';
 import { Component, OnInit, Input } from '@angular/core';
 
 @Component({

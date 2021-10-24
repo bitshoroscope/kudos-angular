@@ -1,0 +1,29 @@
+<div class="row">
+    <div class="col s12 m8 l4 offset-m2 offset-l4">
+        <form #loginForm="ngForm" (ngSubmit)="login(loginForm.value)">
+            <div class="card">
+
+                <div class="card-action red lighten-2 white-text">
+                    <h3>Welcome to Kudos App</h3>
+                </div>
+
+                <div class="card-content">
+                    <div class="form-field">
+                        <label for="username">Username</label>
+                        <input [(ngModel)]="username" name="username" type="text" id="username">
+                    </div><br>
+
+                    <div class="form-field">
+                        <label for="password">Password</label>
+                        <input [(ngModel)]="password" name="password" type="password" id="password">
+                    </div><br>
+
+                    <div class="form-field">
+                        <button class="btn-large waves-effect waves-dark" style="width:100%;">Login</button>
+                    </div><br>
+                </div>
+
+            </div>
+        </form>
+    </div>
+</div>

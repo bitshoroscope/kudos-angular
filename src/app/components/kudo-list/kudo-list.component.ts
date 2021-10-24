@@ -1,6 +1,6 @@
-import { IKudo } from './../models/kudo.model';
+import { IKudo } from '../../models/kudo.model';
 import { Component, OnInit } from '@angular/core';
-import { DBService } from '../services/db.service';
+import { DBService } from '../../services/db.service';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -10,7 +10,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class KudoListComponent implements OnInit {
 
-  kudosList:any
+  kudosList:IKudo[]
 
   constructor(private dbService:DBService, private route:ActivatedRoute) { }
 

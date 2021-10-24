@@ -1,4 +1,5 @@
-import { Subject } from 'rxjs';
+import { IKudo } from './../models/kudo.model';
+import { Subject, Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
 
 @Injectable({
@@ -8,8 +9,8 @@ export class DBService {
 
   constructor() { }
 
-  getKudos() {
-    let subject = new Subject();
+  getKudos():Observable<IKudo[]> {
+    let subject = new Subject<IKudo[]>();
     setTimeout(() => {
       subject.next(KUDOS.sort(this.sortByDate));
       subject.complete
@@ -26,7 +27,7 @@ export class DBService {
   }
 }
 
-const KUDOS = [{
+const KUDOS:IKudo[] = [{
   text: "Thank you so much for your effort",
   user: 'Andy',
   date: new Date('2021-10-02'),
