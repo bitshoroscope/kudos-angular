@@ -21,8 +21,11 @@ export class KudoListComponent implements OnInit {
       this.kudosList = kudos.map( e=> {
         //To create an empty object of an interface
         let kudo = <IKudo>{};
-        kudo.text = e.payload.doc.data()["message"]
-        console.log(kudo)
+        kudo.message = e.payload.doc.data()["message"]
+        kudo.date = e.payload.doc.data()["date"]
+        kudo.receiver = e.payload.doc.data()["receiver"]
+        kudo.giver = e.payload.doc.data()["giver"]
+        kudo.type = e.payload.doc.data()["type"]
         return kudo;
       })
     })

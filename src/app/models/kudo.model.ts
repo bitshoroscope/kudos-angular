@@ -1,5 +1,7 @@
 export interface IKudo {
-    text: string,
-    user: string,
-    date: Date
+    message: string,
+    giver: string,
+    receiver:string,
+    date: Date,
+    type:number
 }

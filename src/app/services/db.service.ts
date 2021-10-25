@@ -11,17 +11,21 @@ export class DBService {
 
   constructor(private firestore: AngularFirestore) { }
 
-/*   getKudos():Observable<IKudo[]> {
-    let subject = new Subject<IKudo[]>();
-    setTimeout(() => {
-      subject.next(KUDOS.sort(this.sortByDate));
-      subject.complete
-    })
-    return subject;
-  } */
+  /*   getKudos():Observable<IKudo[]> {
+      let subject = new Subject<IKudo[]>();
+      setTimeout(() => {
+        subject.next(KUDOS.sort(this.sortByDate));
+        subject.complete
+      })
+      return subject;
+    } */
 
   getKudos() {
     return this.firestore.collection('kudos').snapshotChanges();
+  }
+
+  public saveKudo(data: IKudo) {
+    return this.firestore.collection('kudos').add(data);
   }
 
   sortByDate(a, b) {
@@ -33,20 +37,28 @@ export class DBService {
   }
 }
 
-const KUDOS:IKudo[] = [{
-  text: "Thank you so much for your effort",
-  user: 'Andy',
+const KUDOS: IKudo[] = [{
+  message: "Thank you so much for your effort",
+  giver: 'Andy',
+  receiver: 'Homer',
   date: new Date('2021-10-02'),
+  type: 1
 }, {
-  text: "Glad to have you with us. It's amazing!!",
-  user: 'Bart',
+  message: "Glad to have you with us. It's amazing!!",
+  giver: 'Bart',
+  receiver: 'Homer',
   date: new Date('2021-11-02'),
+  type: 1
 }, {
-  text: "Amazing job! It was marvelous!",
-  user: 'Lisa',
+  message: "Amazing job! It was marvelous!",
+  giver: 'Andy',
+  receiver: 'Lisa',
   date: new Date('2021-09-02'),
+  type: 1
 }, {
-  text: "This will be a really large text, in order to check the behavior of the card",
-  user: 'Lisa',
+  message: "This will be a really large text, in order to check the behavior of the card",
+  giver: 'Lisa',
+  receiver: 'Andy',
   date: new Date('2021-09-02'),
+  type: 1
 }]

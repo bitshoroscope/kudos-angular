@@ -1,4 +1,6 @@
+import { DBService } from './../../services/db.service';
 import { Component, OnInit } from '@angular/core';
+import { IKudo } from 'src/app/models/kudo.model';
 
 @Component({
   selector: 'app-give-kudos',
@@ -7,17 +9,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class GiveKudosComponent implements OnInit {
 
-  userTo:string
+  receiver:string
   message:string
   date:Date = new Date()
 
-  constructor() { }
+  constructor(private dbService:DBService) { }
 
   ngOnInit(): void {
   }
 
   giveKudo(formValues){
-    console.log(formValues)
+    let kudo = <IKudo>{};
+    kudo.date = new Date()
+    kudo.type = 1
+    kudo.message = formValues.message
+    kudo.receiver = formValues.receiver
+    kudo.giver = 'Andy'
+    this.dbService.saveKudo(kudo)
   }
 
 }
