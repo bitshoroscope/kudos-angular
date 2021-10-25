@@ -5,6 +5,6 @@ export interface IUser{
     name: string, 
     lastname: string,
     photoUrl: string,
-    organization:string
-
+    organization:string,
+    emailVerified: boolean
 }

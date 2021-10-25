@@ -16,7 +16,7 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  login(formValues){
+  async login(formValues){
     this.authService.login(formValues.username, formValues.password);
   }
 

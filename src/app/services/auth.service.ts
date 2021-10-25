@@ -15,46 +15,40 @@ export class AuthService {
   constructor(public afs: AngularFirestore,
     public afAuth: AngularFireAuth,
     public router: Router,
-    public ngZone: NgZone) { 
-      this.afAuth.authState.subscribe(user => {
-        if (user) {
-          this.currentUser = user;
-          localStorage.setItem('user', JSON.stringify(this.currentUser));
-          JSON.parse(localStorage.getItem('user'));
-        } else {
-          localStorage.setItem('user', null);
-          JSON.parse(localStorage.getItem('user'));
-        }
-      })
-    }
+    public ngZone: NgZone) {
+    this.afAuth.authState.subscribe(user => {
+      if (user) {
+        this.currentUser = user;
+        localStorage.setItem('user', JSON.stringify(this.currentUser));
+        JSON.parse(localStorage.getItem('user'));
+      } else {
+        localStorage.setItem('user', null);
+        JSON.parse(localStorage.getItem('user'));
+      }
+    })
+  }
 
-  login(email: string, password: string) {
-    return this.afAuth.signInWithEmailAndPassword(email, password)
-      .then((result) => {
-        this.ngZone.run(() => {
-          this.router.navigate(['give-kudos']);
-        });
+  async login(email: string, password: string) {
+    try {
+      const result = await this.afAuth.signInWithEmailAndPassword(email, password);
+      this.ngZone.run(() => {
         this.setUserData(result.user);
-      }).catch((error) => {
-        window.alert(error.message)
-      })
+        this.router.navigate(['give-kudos']);
+      });
+    } catch (error) {
+      window.alert(error.message);
+    }
   }
 
   isAuthenticated() {
-    return !!this.currentUser;
+    const user = JSON.parse(localStorage.getItem('user'));
+    return (user !== null) ? true : false;
   }
 
-  setUserData(user) {
+  async setUserData(user) {
     const userRef: AngularFirestoreDocument<any> = this.afs.doc(`users/${user.uid}`);
-    const userData: IUser = {
-      id: user.id,
-      email: user.email,
-      username: user.username,
-      photoUrl: user.photoUrl,
-      organization: user.organization,
-      name: user.name,
-      lastname:user.lastname
-    }
+    const userData  = await userRef.ref.get().then(doc => {return doc.data()})
+    this.currentUser = userData
     return userRef.set(userData, {
       merge: true
     })
@@ -63,7 +57,7 @@ export class AuthService {
   signOut() {
     return this.afAuth.signOut().then(() => {
       localStorage.removeItem('user');
-      this.router.navigate(['sign-in']);
+      this.router.navigate(['login']);
     })
   }
 }

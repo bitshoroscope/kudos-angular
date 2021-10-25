@@ -4,10 +4,15 @@
             <a href="#" class="brand-logo">My Kudos App</a>
             <ul id="nav-mobile" class="right hide-on-med-and-down">
                 <li>
-                    <a *ngIf="authService.isAuthenticated()" routerLink="/give-kudos" routerLinkActive="actived">Give kudos</a>
+                    <a *ngIf="authService.isAuthenticated()" routerLink="/give-kudos" routerLinkActive="actived">Give
+                        kudos</a>
                 </li>
-                <li><a *ngIf="authService.isAuthenticated()" routerLink="/my-kudos" routerLinkActive="actived">My Kudos</a></li>
-                <li><a *ngIf="authService.isAuthenticated()" [routerLink]="['give-kudos']">Welcome {{authService.currentUser.username}}</a></li>
+                <li><a *ngIf="authService.isAuthenticated()" routerLink="/my-kudos" routerLinkActive="actived">My
+                        Kudos</a></li>
+                <li><a *ngIf="authService.isAuthenticated()" [routerLink]="['give-kudos']">Welcome
+                        {{currentUser?.username}}</a></li>
+                <li><a *ngIf="authService.isAuthenticated()" (click)="authService.signOut()">Logout
+                    </a></li>
             </ul>
         </div>
     </nav>
