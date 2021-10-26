@@ -9,11 +9,14 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title = 'kudos-angular';
 
-  ngAfterViewInit() {
-    const elemDropdown = document.querySelectorAll('.dropdown-trigger');
+  constructor(public authService: AuthService){
   }
 
-  constructor(public authService: AuthService) {
-
+  ngAfterViewInit(): void {
+    setTimeout( function() {
+      var elem = document.querySelector('.dropdown-trigger');
+      var instance = M.Dropdown.init(elem, {});
+    }, 0)
   }
+
 }

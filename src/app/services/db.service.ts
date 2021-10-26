@@ -28,6 +28,10 @@ export class DBService {
     return this.firestore.collection('kudos').add(data);
   }
 
+  getUsers() {
+    return this.firestore.collection('users').snapshotChanges();
+  }
+
   sortByDate(a, b) {
     if (a.date < b.date)
       return 1;

@@ -22,7 +22,7 @@ import { FormsModule } from '@angular/forms';
     KudoComponent,
     KudoListComponent,
     GiveKudosComponent,
-    LoginComponent
+    LoginComponent,
   ],
   imports: [
     AngularFireModule.initializeApp(environment.firebase),
