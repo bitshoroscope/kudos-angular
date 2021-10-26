@@ -32,4 +32,9 @@ export class DBService {
     return this.afs.doc(`users/${uid}`);
   }
 
+  async getLoggedUser() {
+    let uid = JSON.parse(localStorage.user).uid;
+    let user = await this.getUserInfoByUID(uid).ref.get().then(doc => { return doc.data(); });
+    return user;
+  }
 }

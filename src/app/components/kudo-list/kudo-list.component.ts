@@ -19,8 +19,7 @@ export class KudoListComponent implements OnInit {
 
   async ngOnInit() {
 
-    let uid = JSON.parse(localStorage.user).uid;
-    let user = await this.dbService.getUserInfoByUID(uid).ref.get().then(doc => {return doc.data()})
+    let user = await this.dbService.getLoggedUser();
 
     this.dbService.getKudosByReceiver(user.name).subscribe(kudos => {
       this.kudosList = kudos.map( e=> {

@@ -39,14 +39,17 @@ export class GiveKudosComponent implements OnInit {
     });
   }
 
-  giveKudo(formValues){
+  async giveKudo(formValues){
+
+    let user = await this.dbService.getLoggedUser();
+    
     let kudo = <IKudo>{};
     kudo.date = new Date();
     kudo.type = 1;
     kudo.message = formValues.message;
     console.log(formValues)
     kudo.receiver = formValues.receiver;
-    kudo.giver = 'Andy';
+    kudo.giver = user.name;
     this.dbService.saveKudo(kudo);
     alert("The kudo has been sent!")
   }
