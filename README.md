@@ -4,10 +4,10 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 It uses MaterializeCSS as front-end framework.
 
 ## Project structure
-`components` -> These are the base components for the UI
-`services` -> Common functionality to interchange data
-`models` -> Interfaces for type definition 
-`functions` -> Auxiliar code to prepare mock data for the demo
+`components` -> These are the base components for the UI  
+`services` -> Common functionality to interchange data  
+`models` -> Interfaces for type definition   
+`functions` -> Auxiliar code to prepare mock data for the demo  
 
 ## Considerations
 These project was built using Firebase as a platform. 
@@ -34,3 +34,5 @@ pass: 123456
 
 ## Known issues
 1. You must give two clicks to login to the app
+
+Happy kudoing!! 🤩
