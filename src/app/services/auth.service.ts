@@ -1,6 +1,5 @@
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
 import { AngularFireAuth } from "@angular/fire/auth";
-import { IUser } from './../models/user.model';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgZone } from '@angular/core';

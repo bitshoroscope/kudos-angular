@@ -9,19 +9,15 @@ import { map } from 'rxjs/operators';
 })
 export class DBService {
 
-  constructor(private firestore: AngularFirestore) { }
+  constructor(private firestore: AngularFirestore, public afs: AngularFirestore) { }
 
-  /*   getKudos():Observable<IKudo[]> {
-      let subject = new Subject<IKudo[]>();
-      setTimeout(() => {
-        subject.next(KUDOS.sort(this.sortByDate));
-        subject.complete
-      })
-      return subject;
-    } */
 
   getKudos() {
     return this.firestore.collection('kudos').snapshotChanges();
+  }
+
+  getKudosByReceiver(receiver: string) {
+    return this.firestore.collection('kudos', ref => ref.where('receiver', '==', receiver)).snapshotChanges();
   }
 
   public saveKudo(data: IKudo) {
@@ -32,30 +28,8 @@ export class DBService {
     return this.firestore.collection('users').snapshotChanges();
   }
 
-}
+  getUserInfoByUID(uid:string){
+    return this.afs.doc(`users/${uid}`);
+  }
 
-const KUDOS: IKudo[] = [{
-  message: "Thank you so much for your effort",
-  giver: 'Andy',
-  receiver: 'Homer',
-  date: new Date('2021-10-02'),
-  type: 1
-}, {
-  message: "Glad to have you with us. It's amazing!!",
-  giver: 'Bart',
-  receiver: 'Homer',
-  date: new Date('2021-11-02'),
-  type: 1
-}, {
-  message: "Amazing job! It was marvelous!",
-  giver: 'Andy',
-  receiver: 'Lisa',
-  date: new Date('2021-09-02'),
-  type: 1
-}, {
-  message: "This will be a really large text, in order to check the behavior of the card",
-  giver: 'Lisa',
-  receiver: 'Andy',
-  date: new Date('2021-09-02'),
-  type: 1
-}]
+}

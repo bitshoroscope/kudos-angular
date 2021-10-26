@@ -1,3 +1,4 @@
+import { AngularFirestore } from '@angular/fire/firestore';
 import { IKudo } from '../../models/kudo.model';
 import { Component, OnInit } from '@angular/core';
 import { DBService } from '../../services/db.service';
@@ -16,8 +17,12 @@ export class KudoListComponent implements OnInit {
 
   constructor(private dbService:DBService, private route:ActivatedRoute) { }
 
-  ngOnInit(): void {
-    this.dbService.getKudos().subscribe(kudos => {
+  async ngOnInit() {
+
+    let uid = JSON.parse(localStorage.user).uid;
+    let user = await this.dbService.getUserInfoByUID(uid).ref.get().then(doc => {return doc.data()})
+
+    this.dbService.getKudosByReceiver(user.name).subscribe(kudos => {
       this.kudosList = kudos.map( e=> {
         //To create an empty object of an interface
         let kudo = <IKudo>{};
@@ -29,6 +34,7 @@ export class KudoListComponent implements OnInit {
         return kudo;
       }).sort(this.sortByDate)
     })
+
   }
 
   sortByDate(a, b) {
