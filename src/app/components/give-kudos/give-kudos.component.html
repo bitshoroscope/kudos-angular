@@ -17,8 +17,11 @@
                                 <div class="input-field col s12">
                                     <select [(ngModel)]="receiver" name="receiver">
                                         <!-- TODO: Correct this hardcoded assignation -->
-                                        <option>{{usersList.name}}</option>
-                                        <option *ngFor="let user of usersList" [value]="user.name">{{user.name}}</option>
+                                        <!-- <option *ngFor="let user of usersList" [value]="user.name">{{user.name}}</option> -->
+                                        <option value="andy">andy</option>
+                                        <option value="bart">bart</option>
+                                        <option value="lisa">lisa</option>
+                                        <option value="homer">homer</option>
                                     </select>
                                 </div>
                             </div>

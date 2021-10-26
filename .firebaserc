@@ -9,6 +9,7 @@
     }
   },
   "projects": {
-    "default": "my-kudos-app"
+    "default": "my-kudos-app",
+    "dev":"my-kudos-app"
   }
 }

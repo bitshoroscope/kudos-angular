@@ -19,7 +19,7 @@ export class KudoListComponent implements OnInit {
 
   async ngOnInit() {
 
-    let user = await this.dbService.getLoggedUser();
+    let user:any = await this.dbService.getLoggedUser();
 
     this.dbService.getKudosByReceiver(user.name).subscribe(kudos => {
       this.kudosList = kudos.map( e=> {

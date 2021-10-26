@@ -22,6 +22,13 @@ export class GiveKudosComponent implements OnInit {
     this.fillUsersList();
   }
 
+  ngAfterViewInit(): void {
+    setTimeout( function() {
+      var elem = document.querySelector('select');
+      M.FormSelect.init(elem, {});
+    }, 0)
+  }
+
   private fillUsersList() {
     this.dbService.getUsers().subscribe(users => {
       this.usersList = users.map(e => {
@@ -41,7 +48,7 @@ export class GiveKudosComponent implements OnInit {
 
   async giveKudo(formValues){
 
-    let user = await this.dbService.getLoggedUser();
+    let user:any = await this.dbService.getLoggedUser();
     
     let kudo = <IKudo>{};
     kudo.date = new Date();
@@ -52,13 +59,6 @@ export class GiveKudosComponent implements OnInit {
     kudo.giver = user.name;
     this.dbService.saveKudo(kudo);
     alert("The kudo has been sent!")
-  }
-
-  ngAfterViewInit(): void {
-    setTimeout( function() {
-      var elem = document.querySelector('select');
-      M.FormSelect.init(elem, {});
-    }, 0)
   }
 
 }
