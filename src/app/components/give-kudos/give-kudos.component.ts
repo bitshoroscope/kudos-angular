@@ -10,7 +10,7 @@ import { IKudo } from 'src/app/models/kudo.model';
 })
 export class GiveKudosComponent implements OnInit {
 
-  receiver:string
+  receiver:IKudo
   message:string
   date:Date = new Date()
 
@@ -40,13 +40,22 @@ export class GiveKudosComponent implements OnInit {
   }
 
   giveKudo(formValues){
-    console.log(this.usersList)
     let kudo = <IKudo>{};
-    kudo.date = new Date()
-    kudo.type = 1
-    kudo.message = formValues.message
-    kudo.receiver = formValues.receiver
-    kudo.giver = 'Andy'
+    kudo.date = new Date();
+    kudo.type = 1;
+    kudo.message = formValues.message;
+    console.log(formValues)
+    kudo.receiver = formValues.receiver.name;
+    kudo.giver = 'Andy';
+    // this.dbService.saveKudo(kudo);
+    alert("The kudo has been sent!")
+  }
+
+  ngAfterViewInit(): void {
+    setTimeout( function() {
+      var elem = document.querySelector('select');
+      M.FormSelect.init(elem, {});
+    }, 0)
   }
 
 }

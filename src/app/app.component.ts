@@ -15,7 +15,7 @@ export class AppComponent {
   ngAfterViewInit(): void {
     setTimeout( function() {
       var elem = document.querySelector('.dropdown-trigger');
-      var instance = M.Dropdown.init(elem, {});
+      M.Dropdown.init(elem, {});
     }, 0)
   }
 

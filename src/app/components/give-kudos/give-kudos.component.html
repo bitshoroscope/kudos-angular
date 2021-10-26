@@ -1,6 +1,6 @@
 <div class="row">
     <div class="col s6 flexbox">
-        <form #kudoForm="ngForm" (ngSubmit)="giveKudo(kudoForm.value)">
+        <form #kudoForm="ngForm" (ngSubmit)="giveKudo(kudoForm.value); kudoForm.reset()">
             <div class="card horizontal">
                 <div class="card-image">
                     <!-- TODO: Reemplazar la imagen-->
@@ -14,7 +14,13 @@
                             </div>
                             <div class="col s6">
                                 <label for="username">Choose user</label>
-                                <input [(ngModel)]="receiver" name="receiver" type="text" id="receiver">
+                                <div class="input-field col s12">
+                                    <select [(ngModel)]="receiver" name="receiver">
+                                        <!-- TODO: Correct this hardcoded assignation -->
+                                        <option>{{usersList.name}}</option>
+                                        <option *ngFor="let user of usersList" [value]="user.name">{{user.name}}</option>
+                                    </select>
+                                </div>
                             </div>
                             <div class="form-field col s12">
                                 <label for="message">What do you want to say?</label>
