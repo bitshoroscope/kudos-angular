@@ -27,10 +27,17 @@ export class KudoListComponent implements OnInit {
         kudo.giver = e.payload.doc.data()["giver"]
         kudo.type = e.payload.doc.data()["type"]
         return kudo;
-      })
+      }).sort(this.sortByDate)
     })
   }
 
+  sortByDate(a, b) {
+    if (a.date < b.date)
+      return 1;
+    if (a.date > b.date)
+      return -1;
+    return 0
+  }
 
 
 }

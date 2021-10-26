@@ -45,9 +45,9 @@ export class GiveKudosComponent implements OnInit {
     kudo.type = 1;
     kudo.message = formValues.message;
     console.log(formValues)
-    kudo.receiver = formValues.receiver.name;
+    kudo.receiver = formValues.receiver;
     kudo.giver = 'Andy';
-    // this.dbService.saveKudo(kudo);
+    this.dbService.saveKudo(kudo);
     alert("The kudo has been sent!")
   }
 

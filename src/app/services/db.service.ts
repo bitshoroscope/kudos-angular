@@ -32,13 +32,6 @@ export class DBService {
     return this.firestore.collection('users').snapshotChanges();
   }
 
-  sortByDate(a, b) {
-    if (a.date < b.date)
-      return 1;
-    if (a.date > b.date)
-      return -1;
-    return 0
-  }
 }
 
 const KUDOS: IKudo[] = [{
