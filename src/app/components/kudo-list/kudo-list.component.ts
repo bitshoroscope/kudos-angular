@@ -1,4 +1,3 @@
-import { AngularFirestore } from '@angular/fire/firestore';
 import { IKudo } from '../../models/kudo.model';
 import { Component, OnInit } from '@angular/core';
 import { DBService } from '../../services/db.service';

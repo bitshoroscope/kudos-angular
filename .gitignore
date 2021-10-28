@@ -47,3 +47,7 @@ Thumbs.db
 
 #Credentials
 src/environments/environment.ts
+
+#logs
+functions/database-debug.log
+functions/firestore-debug.log

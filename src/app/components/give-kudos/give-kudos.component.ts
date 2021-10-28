@@ -2,6 +2,7 @@ import { IUser } from './../../models/user.model';
 import { DBService } from './../../services/db.service';
 import { Component, OnInit } from '@angular/core';
 import { IKudo } from 'src/app/models/kudo.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-give-kudos',
@@ -10,20 +11,22 @@ import { IKudo } from 'src/app/models/kudo.model';
 })
 export class GiveKudosComponent implements OnInit {
 
-  receiver:IKudo
-  message:string
-  date:Date = new Date()
+  receiver: IKudo
+  message: string
+  date: Date = new Date()
+  user: any
 
-  usersList:IUser[]
+  usersList: IUser[]
 
-  constructor(private dbService:DBService) { }
+  constructor(private dbService: DBService, private router: Router) { }
 
-  ngOnInit(): void {
+  async ngOnInit() {
+    this.user = await this.dbService.getLoggedUser();
     this.fillUsersList();
   }
 
   ngAfterViewInit(): void {
-    setTimeout( function() {
+    setTimeout(function () {
       var elem = document.querySelector('select');
       M.FormSelect.init(elem, {});
     }, 0)
@@ -41,24 +44,32 @@ export class GiveKudosComponent implements OnInit {
         user.name = e.payload.doc.data()["name"];
         user.organization = e.payload.doc.data()["organization"];
         user.photoUrl = e.payload.doc.data()["photoUrl"];
+        user.kudosLeft = e.payload.doc.data()["kudosLeft"]
         return user;
       });
     });
   }
 
-  async giveKudo(formValues){
-
-    let user:any = await this.dbService.getLoggedUser();
-    
+  async giveKudo(formValues) {
     let kudo = <IKudo>{};
     kudo.date = new Date();
     kudo.type = 1;
     kudo.message = formValues.message;
     console.log(formValues)
     kudo.receiver = formValues.receiver;
-    kudo.giver = user.name;
-    this.dbService.saveKudo(kudo);
+    kudo.giver = this.user.name;
+    this.dbService.saveKudo(this.user, kudo);
     alert("The kudo has been sent!")
+  }
+
+  refreshComponent() {
+    setTimeout(() => {
+      let currentUrl = this.router.url;
+      this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+      this.router.onSameUrlNavigation = 'reload';
+      this.router.navigate([currentUrl]);
+    }, 500);
+
   }
 
 }
