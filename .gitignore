@@ -49,5 +49,5 @@ Thumbs.db
 src/environments/environment.ts
 
 #logs
-functions/database-debug.log
-functions/firestore-debug.log
+database-debug.log
+firestore-debug.log

@@ -69,7 +69,6 @@ export class GiveKudosComponent implements OnInit {
       this.router.onSameUrlNavigation = 'reload';
       this.router.navigate([currentUrl]);
     }, 500);
-
   }
 
 }

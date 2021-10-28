@@ -1,10 +1,10 @@
-<div class="row s6 flexbox">
+<div class="row s12 flexbox">
     <h3>Kudos left: {{user.kudosLeft}}</h3>
 </div>
-<div class="row">
-    <div class="col s6 flexbox">
+<div class="row s12">
+    <div class="col s12 flex-container">
         <form #kudoForm="ngForm" (ngSubmit)="giveKudo(kudoForm.value); kudoForm.reset(); refreshComponent()">
-            <div class="card horizontal">
+            <div class="card horizontal thumbnail">
                 <div class="card-image">
                     <!-- TODO: Reemplazar la imagen-->
                     <img src="https://lorempixel.com/100/190/nature/6">
@@ -33,10 +33,10 @@
                                 <input [(ngModel)]="message" name="message" type="text" id="message">
                             </div><br>
                             <div class="form-field col s12 right-align">
-                                <button class="btn waves-effect red accent-1 waves-light" (click)="kudoForm.reset()">Cancel
+                                <button type='button' class="btn waves-effect red accent-1 waves-light" (click)="kudoForm.reset()">Cancel
                                     <i class="material-icons right">cancel</i>
                                 </button><span>&nbsp;</span>
-                                <button class="btn waves-effect waves-light" type="submit" name="action" [disabled]="user.kudosLeft==0">Send
+                                <button class="btn waves-effect waves-light" type="submit" name="action" [disabled]="user.kudosLeft<=0">Send
                                     <i class="material-icons right">send</i>
                                 </button>
                             </div>

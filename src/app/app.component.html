@@ -12,8 +12,8 @@
                 </li>
                 <li><a *ngIf="authService.isAuthenticated()" routerLink="/my-kudos" routerLinkActive="actived">My
                         Kudos</a></li>
-                <li><a *ngIf="authService.isAuthenticated()" class="dropdown-trigger" href="#!" data-target="dropdown1">Welcome
-                    {{currentUser?.username}}<i
+                <li><a *ngIf="authService.isAuthenticated()" class="dropdown-trigger" href="#!" data-target="dropdown1">Hey
+                    {{user?.name}}<i
                             class="material-icons right">arrow_drop_down</i></a></li>
             </ul>
 
