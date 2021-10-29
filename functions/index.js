@@ -51,7 +51,6 @@ exports.scramble = functions.https.onRequest(async(req, res) => {
     res.json({ result: `Message with ID: ${writeResult.id} added.` });
 });
 
-
 /* 
     Functions to reset the kudos for all users, it could be specified on crontab form o text like this:
     - text way: .schedule('every 2 minutes')
@@ -60,17 +59,23 @@ exports.scramble = functions.https.onRequest(async(req, res) => {
     So for the moment, you can't run pubsub triggered Cloud Functions locally.
     Reference: https://firebase.google.com/docs/functions/schedule-functions
 */
-exports.scheduledFunctionCrontab = functions.pubsub.schedule('0 5 * * 1')
-    .timeZone('America/New_York') // Users can choose timezone - default is America/Los_Angeles
+exports.scheduledFunctionCrontab = functions.pubsub.schedule('every 2 minutes')
+    .timeZone('America/New_York')
     .onRun(async(context) => {
-        let giver = randomize(users)
-        const writeResult = await admin.firestore().collection('kudos').add({
-            message: randomize(messages),
-            giver: giver,
-            receiver: chooseReceiver(giver, users),
-            date: randomDate(start, end),
-            type: 1
+        const writeResult = await admin.firestore().collection('users').get().then(async(querySnapshot) => {
+            querySnapshot.forEach(function(doc) {
+                doc.ref.update({
+                    kudosLeft: 3
+                });
+            });
         });
-        // Send back a message that we've successfully written the message
-        res.json({ result: `Message with ID: ${writeResult.id} added.` });
     });
+
+exports.createUsers = functions.https.onRequest(async(req, res) => {
+    const writeResult = await admin.firestore().collection('users').add({
+        name: randomize(users),
+        kudosLeft: Math.floor(Math.random() * 10)
+    });
+    // Send back a message that we've successfully written the message
+    res.json({ result: `Message with ID: ${writeResult.id} added.` });
+});

@@ -43,6 +43,7 @@ You can log in with one of the following users:
 `pass: 123456`
 
 ## Known issues
-1. You must give two clicks to log in to the app
+1. MAJOR. Correct the session management, currently the app is mixing data between users. If you notice this just refesh the page.
+2. The app is not refreshing the kudos counter after sending them. 
 
 Happy kudoing!! 🤩
