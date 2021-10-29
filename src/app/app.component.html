@@ -1,10 +1,7 @@
 <div class="row">
-    <ul id="dropdown1" class="dropdown-content">
-        <li><a *ngIf="authService.isAuthenticated()" (click)="authService.signOut()">Logout</a></li>
-    </ul>
     <nav>
         <div class="nav-wrapper">
-            <a href="#" class="brand-logo">My Kudos App</a>
+            <a href="#" class="brand-logo">My Kudos App <span *ngIf="authService.isAuthenticated()" style="font-size: 14px">Welcome {{user.name}}</span></a>
             <ul id="nav-mobile" class="right hide-on-med-and-down">
                 <li>
                     <a *ngIf="authService.isAuthenticated()" routerLink="/give-kudos" routerLinkActive="actived">Give
@@ -12,9 +9,7 @@
                 </li>
                 <li><a *ngIf="authService.isAuthenticated()" routerLink="/my-kudos" routerLinkActive="actived">My
                         Kudos</a></li>
-                <li><a *ngIf="authService.isAuthenticated()" class="dropdown-trigger" href="#!" data-target="dropdown1">Hey
-                    {{user?.name}}<i
-                            class="material-icons right">arrow_drop_down</i></a></li>
+                <li><a *ngIf="authService.isAuthenticated()" (click)="authService.signOut()">Logout</a></li>
             </ul>
 
         </div>

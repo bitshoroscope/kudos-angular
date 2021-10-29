@@ -41,7 +41,7 @@ export class AuthService {
 
   isAuthenticated() {
     const user = JSON.parse(localStorage.getItem('user'));
-    return (user !== null) ? true : false;
+    return user !== null
   }
 
   async setUserData(user) {
