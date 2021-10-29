@@ -59,7 +59,7 @@ exports.scramble = functions.https.onRequest(async(req, res) => {
     So for the moment, you can't run pubsub triggered Cloud Functions locally.
     Reference: https://firebase.google.com/docs/functions/schedule-functions
 */
-exports.scheduledFunctionCrontab = functions.pubsub.schedule('every 2 minutes')
+exports.restoreKudosCronTab = functions.pubsub.schedule('0 5 * * 1')
     .timeZone('America/New_York')
     .onRun(async(context) => {
         const writeResult = await admin.firestore().collection('users').get().then(async(querySnapshot) => {
@@ -71,7 +71,8 @@ exports.scheduledFunctionCrontab = functions.pubsub.schedule('every 2 minutes')
         });
     });
 
-exports.createUsers = functions.https.onRequest(async(req, res) => {
+
+createUsers = functions.https.onRequest(async(req, res) => {
     const writeResult = await admin.firestore().collection('users').add({
         name: randomize(users),
         kudosLeft: Math.floor(Math.random() * 10)
